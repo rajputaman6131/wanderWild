@@ -6,16 +6,19 @@ import { NextResponse } from "next/server";
 export const GET = async (req) => {
   const { searchParams } = new URL(req.nextUrl);
 
-  const page = parseInt(searchParams.get("page")) || 1;
+  const page = parseInt(searchParams.get("page")) || 1; // Convert page parameter to number
+  const name = searchParams.get("name");
 
-  const LIMIT = parseInt(searchParams.get("limit")) || 5;
+  const POSTS_PER_PAGE = 6;
+
+  const skip = POSTS_PER_PAGE * (page - 1); // Calculate skip value
 
   const query = {
-    skip: LIMIT * (page - 1),
-    limit: LIMIT,
+    ...(name && { name }),
   };
 
   try {
+    await connectToDB();
     const session = await getAuthSession();
 
     if (!session) {
@@ -23,18 +26,19 @@ export const GET = async (req) => {
         JSON.stringify({ message: "Not Authenticated!" }, { status: 401 })
       );
     }
-    await connectToDB();
 
-    const [contacts, count] = await Promise.all([
-      Contact.find(query).lean(),
-      Contact.countDocuments(query),
-    ]);
+    const contacts = await Contact.find(query)
+      .skip(skip)
+      .limit(POSTS_PER_PAGE)
+      .lean();
+
+    const count = await Contact.countDocuments(query);
 
     return new NextResponse(
-      JSON.stringify({ contacts, count }, { status: 200 })
+      JSON.stringify({ contacts, count, currentPage: page }, { status: 200 })
     );
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return new NextResponse(
       JSON.stringify({ message: "Something went wrong!" }, { status: 500 })
     );

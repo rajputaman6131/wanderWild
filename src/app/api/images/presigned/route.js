@@ -10,21 +10,11 @@ const accessKeyId = process.env.accessKeyId;
 const secretAccessKey = process.env.secretAccessKey;
 const bucket = process.env.bucket;
 
-const s3Client = new S3Client({
-  region,
-  credentials: {
-    accessKeyId,
-    secretAccessKey,
-  },
-});
-
-const generateRandomBytes = promisify(randomBytes);
-
 export const GET = async (req) => {
+  const { searchParams } = new URL(req.nextUrl);
+  const images = parseInt(searchParams.get("images")) || 1;
+  const numImages = parseInt(images) || 1;
   try {
-    const { searchParams } = new URL(req.nextUrl);
-    const images = parseInt(searchParams.get("images")) || 1;
-    const numImages = parseInt(images) || 1;
     const session = await getAuthSession();
 
     if (!session) {
@@ -58,6 +48,16 @@ export const GET = async (req) => {
 };
 
 const generateUploadUrl = async () => {
+  const s3Client = new S3Client({
+    region,
+    credentials: {
+      accessKeyId,
+      secretAccessKey,
+    },
+  });
+
+  const generateRandomBytes = promisify(randomBytes);
+
   const rawBytes = await generateRandomBytes(16);
   const imageName = rawBytes.toString("hex") + "/1";
 

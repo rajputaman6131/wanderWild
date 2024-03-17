@@ -6,26 +6,28 @@ import { NextResponse } from "next/server";
 export const GET = async (req) => {
   const { searchParams } = new URL(req.nextUrl);
 
-  const page = searchParams.get("page");
-  const POST_PER_PAGE = parseInt(searchParams.get("limit")) || 5;
+  const page = parseInt(searchParams.get("page")) || 1; // Convert page parameter to number
+  const limit = parseInt(searchParams.get("limit")) || 5;
 
-  let query = {};
+  const POSTS_PER_PAGE = 6;
 
-  if (page && page.toLowerCase() !== "all") {
-    const pageNumber = parseInt(page) || 1;
-    const skip = POST_PER_PAGE * (pageNumber - 1);
-    query = { skip, limit: POST_PER_PAGE };
-  }
+  const skip = POSTS_PER_PAGE * (page - 1); // Calculate skip value
+
+  const query = {};
 
   try {
     await connectToDB();
 
-    const [places, count] = await Promise.all([
-      Place.find(query).lean(),
-      Place.countDocuments(),
-    ]);
+    const places = await Place.find(query)
+      .skip(skip)
+      .limit(POSTS_PER_PAGE)
+      .lean();
 
-    return new NextResponse(JSON.stringify({ places, count }, { status: 200 }));
+    const count = await Place.countDocuments(query);
+
+    return new NextResponse(
+      JSON.stringify({ places, count, currentPage: page }, { status: 200 })
+    );
   } catch (err) {
     console.error(err);
     return new NextResponse(
