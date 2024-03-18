@@ -6,28 +6,32 @@ import { NextResponse } from "next/server";
 export const GET = async (req) => {
   const { searchParams } = new URL(req.nextUrl);
 
-  const page = searchParams.get("page");
+  const page = parseInt(searchParams.get("page")) || 1; // Convert page parameter to number
   const cat = searchParams.get("cat");
 
-  const POST_PER_PAGE = 4;
+  const POSTS_PER_PAGE = parseInt(searchParams.get("limit")) || 6;
+
+  const skip = POSTS_PER_PAGE * (page - 1); // Calculate skip value
 
   const query = {
-    skip: POST_PER_PAGE * (page - 1),
-    limit: POST_PER_PAGE,
     ...(cat && { catSlug: cat }),
   };
 
   try {
     await connectToDB();
 
-    const [posts, count] = await Promise.all([
-      Post.find(query).lean(),
-      Post.countDocuments(query),
-    ]);
+    const posts = await Post.find(query)
+      .skip(skip)
+      .limit(POSTS_PER_PAGE)
+      .lean();
 
-    return new NextResponse(JSON.stringify({ posts, count }, { status: 200 }));
+    const count = await Post.countDocuments(query);
+
+    return new NextResponse(
+      JSON.stringify({ posts, count, currentPage: page }, { status: 200 })
+    );
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return new NextResponse(
       JSON.stringify({ message: "Something went wrong!" }, { status: 500 })
     );

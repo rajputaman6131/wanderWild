@@ -7,7 +7,6 @@ import { useSession } from "next-auth/react";
 import dynamic from 'next/dynamic';
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import "react-quill/dist/quill.bubble.css";
-import Loading from "../../../loading";
 import { uploadImages } from "@/utils/image";
 import { BASE_URL, categories, formats, modules } from "@/constants/constants";
 import ImageSection from "@/components/package/ImageSection";
@@ -30,10 +29,6 @@ const UpdatePage = ({ params }) => {
         fetch: false,
         update: false,
     });
-
-    if (status === "loading" || loading.fetch) {
-        return <Loading />
-    }
 
     if (status === "unauthenticated") {
         router.push("/");

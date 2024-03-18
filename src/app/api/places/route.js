@@ -6,10 +6,10 @@ import { NextResponse } from "next/server";
 export const GET = async (req) => {
   const { searchParams } = new URL(req.nextUrl);
 
-  const page = parseInt(searchParams.get("page")) || 1; // Convert page parameter to number
+  const page = parseInt(searchParams.get("page")) || 1;
   const limit = parseInt(searchParams.get("limit")) || 5;
 
-  const POSTS_PER_PAGE = 6;
+  const POSTS_PER_PAGE = limit;
 
   const skip = POSTS_PER_PAGE * (page - 1); // Calculate skip value
 

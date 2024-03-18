@@ -1,8 +1,14 @@
 "use client"
 import { categories } from "@/constants/constants";
+import { useRouter } from "next/navigation";
 
-const Header = ({ selected, setSelected }) => {
-    // Array of category names
+const Header = ({ selected }) => {
+    const router = useRouter();
+
+
+    const setSelected = (category) => {
+        router.push(`?category=${category}`)
+    }
 
     return (
         <div>
