@@ -5,7 +5,7 @@ const Table = ({ columns, data, currentPage, totalPages, onPageChange }) => {
         <div className="rounded-lg border border-gray-200">
             <div className="overflow-x-auto rounded-t-lg">
                 <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
-                    <thead>
+                    <thead className='bg-gray-50'>
                         <tr>
                             {columns.map((column, index) => (
                                 <th key={index} className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-left">
@@ -15,7 +15,7 @@ const Table = ({ columns, data, currentPage, totalPages, onPageChange }) => {
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200">
-                        {data.map((row, rowIndex) => (
+                        {data.length ? data.map((row, rowIndex) => (
                             <tr key={rowIndex}>
                                 {row.map((cell, cellIndex) => (
                                     <td key={cellIndex} className="whitespace-wrap px-4 py-2 text-gray-700">
@@ -23,7 +23,18 @@ const Table = ({ columns, data, currentPage, totalPages, onPageChange }) => {
                                     </td>
                                 ))}
                             </tr>
-                        ))}
+                        )) :
+                            <tr style={{
+                                height: 350
+                            }}>
+                                <td colSpan={columns.length} style={{
+                                    padding: 35,
+                                    textAlign: 'center'
+                                }}>
+                                    No data found
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>

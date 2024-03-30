@@ -6,9 +6,9 @@ import {
 
 const PackageCard = ({ details }) => {
     return (
-        <div className="bg-white rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105">
+        <div className="bg-white rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105 transition-all duration-300">
             <img src={details?.images[0] || "/p1.jpeg"} alt="Tour Image" className="w-full h-64 object-cover" />
-            <div className="p-8">
+            <div className="p-5">
                 <div className="">
                     <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
                         {details?.packageName}

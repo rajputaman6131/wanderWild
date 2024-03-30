@@ -9,7 +9,7 @@ export const GET = async (req) => {
   const page = parseInt(searchParams.get("page")) || 1;
   const category = searchParams.get("category");
 
-  const POSTS_PER_PAGE = 12;
+  const POSTS_PER_PAGE = parseInt(searchParams.get("limit")) || 12;
 
   const skip = POSTS_PER_PAGE * (page - 1);
 
@@ -23,6 +23,7 @@ export const GET = async (req) => {
     const images = await Image.find(query)
       .skip(skip)
       .limit(POSTS_PER_PAGE)
+      .sort({ createdAt: -1 })
       .lean();
 
     const count = await Image.countDocuments(query);

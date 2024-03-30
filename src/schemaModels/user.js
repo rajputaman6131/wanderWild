@@ -19,6 +19,11 @@ const UserSchema = new Schema({
       ref: "Comment",
     },
   ],
+  role: {
+    type: String,
+    default: "USER",
+    enum: ["USER", "ADMIN"],
+  },
 });
 
 const User = models.User || model("User", UserSchema);

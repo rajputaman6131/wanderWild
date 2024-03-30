@@ -4,6 +4,7 @@ import AboutUs from "@/components/home/AboutUs";
 import FAQ from "@/components/home/FAQ";
 import PopularDestinations from "@/components/home/PopularDestinations";
 import PopularTours from "@/components/home/PopularTours";
+import PopularActivities from "@/components/home/PopularActivities";
 
 
 export default function Home({ searchParams }) {
@@ -14,6 +15,7 @@ export default function Home({ searchParams }) {
         minHeight: '60vh'
       }}>
         <Hero />
+        <PopularActivities />
         <PopularDestinations />
         <PopularTours />
         <AboutUs />

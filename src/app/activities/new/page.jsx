@@ -22,7 +22,6 @@ const page = () => {
     const [file, setFile] = useState("");
     const [open, setOpen] = useState(false);
 
-    console.log("session:", session);
 
     if (status === "loading") {
         return <Loading />
@@ -35,8 +34,8 @@ const page = () => {
 
     const handleSubmit = async () => {
         try {
-            if (!values?.description || !values?.placeName || !file) {
-                return toast.error("Place and description are required!!");
+            if (!values?.description || !values?.categoryName || !file) {
+                return toast.error("Category and description are required!!");
             }
             setLoading(true);
 
@@ -45,7 +44,7 @@ const page = () => {
             if (!imageUrls.length) return toast.error("Error Occurred while uploading image...")
 
 
-            const res = await fetch("/api/places", {
+            const res = await fetch("/api/categories", {
                 method: "POST",
                 body: JSON.stringify({
                     ...values,
@@ -54,9 +53,9 @@ const page = () => {
             });
 
             await res.json();
-            toast.success("Place created successfully");
+            toast.success("Category created successfully");
 
-            router.push(`/places`);
+            router.push(`/activities`);
 
         } catch (error) {
             toast.error("Something went wrong");
@@ -71,11 +70,11 @@ const page = () => {
             <div className={styles.container}>
                 <input
                     type="text"
-                    placeholder="Place Name"
+                    placeholder="Category Name"
                     className={styles.input}
-                    value={values?.placeName || ''}
+                    value={values?.categoryName || ''}
                     onChange={(e) => setValues({
-                        ...values, placeName: e.target.value
+                        ...values, categoryName: e.target.value
                     })}
                 />
                 {
@@ -117,7 +116,7 @@ const page = () => {
                         onChange={(text) => setValues({
                             ...values, description: text
                         })}
-                        placeholder="Tell something about place..."
+                        placeholder="Tell something about category..."
                     />
                 </div>
                 <button disabled={loading} className={styles.publish} onClick={handleSubmit}>

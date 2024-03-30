@@ -36,26 +36,49 @@ const products = [
     href: "/places/new",
     icon: PlusCircleIcon,
   },
+
+  {
+    name: "Add Activities",
+    description: "Activities you want to feature",
+    href: "/activities/new",
+    icon: PlusCircleIcon,
+  },
+
   {
     name: "Add Image",
     description: "Images you want to feature in gallery",
     href: "/gallery/new",
     icon: PhotoIcon,
   },
+];
+const callsToAction = [
   {
     name: "Customer Enquiries",
-    description: "Manage enquiries raised by customers",
     href: "/admin/manage/enquiries",
     icon: EnvelopeIcon,
   },
-];
-const callsToAction = [
+  { name: "Manage Blogs", href: "/admin/manage/blogs", icon: ListBulletIcon },
   {
     name: "Manage Packages",
     href: "/admin/manage/packages",
     icon: ListBulletIcon,
   },
-  { name: "Manage Blogs", href: "/admin/manage/blogs", icon: ListBulletIcon },
+
+  {
+    name: "Manage Activities",
+    href: "/admin/manage/activities",
+    icon: ListBulletIcon,
+  },
+  {
+    name: "Manage Gallery",
+    href: "/admin/manage/gallery",
+    icon: PhotoIcon,
+  },
+  {
+    name: "Manage Places",
+    href: "/admin/manage/places",
+    icon: ListBulletIcon,
+  },
 ];
 
 function classNames(...classes) {
@@ -140,7 +163,7 @@ export default function Header() {
                   leaveFrom="opacity-100 translate-y-0"
                   leaveTo="opacity-0 translate-y-1"
                 >
-                  <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
+                  <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md  rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
                     <div className="p-4">
                       {products.map((item) => (
                         <div
@@ -173,7 +196,7 @@ export default function Header() {
                         <Link
                           key={item.name}
                           href={item.href}
-                          className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
+                          className="flex items-center  gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
                         >
                           <item.icon
                             className="h-5 w-5 flex-none text-gray-400"

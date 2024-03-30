@@ -21,6 +21,7 @@ export const GET = async (req) => {
     const places = await Place.find(query)
       .skip(skip)
       .limit(POSTS_PER_PAGE)
+      .sort({ createdAt: -1 })
       .lean();
 
     const count = await Place.countDocuments(query);

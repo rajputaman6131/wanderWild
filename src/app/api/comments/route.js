@@ -11,7 +11,9 @@ export const GET = async (req) => {
   try {
     await connectToDB();
 
-    const comments = await Comment.find({ postSlug }).lean();
+    const comments = await Comment.find({ postSlug })
+      .sort({ createdAt: -1 })
+      .lean();
     return new NextResponse(JSON.stringify(comments, { status: 200 }));
   } catch (err) {
     console.log(err);

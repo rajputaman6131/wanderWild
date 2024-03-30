@@ -23,6 +23,7 @@ export const GET = async (req) => {
     const posts = await Post.find(query)
       .skip(skip)
       .limit(POSTS_PER_PAGE)
+      .sort({ createdAt: -1 })
       .lean();
 
     const count = await Post.countDocuments(query);

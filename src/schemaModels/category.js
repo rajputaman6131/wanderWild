@@ -1,16 +1,17 @@
 import { Schema, model, models } from "mongoose";
 
-const CategorySchema = new Schema({
-  slug: { type: String, unique: true },
-  title: String,
-  img: String,
-  posts: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Post",
+const CategorySchema = new Schema(
+  {
+    categoryName: { type: String, required: true },
+    slug: { type: String, required: true },
+    image: String,
+    description: {
+      type: String,
+      required: true,
     },
-  ],
-});
+  },
+  { timestamps: true }
+);
 
 const Category = models.Category || model("Category", CategorySchema);
 

@@ -30,6 +30,7 @@ export const GET = async (req) => {
     const contacts = await Contact.find(query)
       .skip(skip)
       .limit(POSTS_PER_PAGE)
+      .sort({ createdAt: -1 })
       .lean();
 
     const count = await Contact.countDocuments(query);
