@@ -15,7 +15,8 @@ import toast from "react-hot-toast";
 
 
 const UpdatePage = ({ params }) => {
-    const { status } = useSession();
+    const session = useSession();
+    const { status } = session;
     const router = useRouter();
     const { slug } = params;
     const [values, setValues] = useState({
@@ -30,7 +31,7 @@ const UpdatePage = ({ params }) => {
         update: false,
     });
 
-    if (status === "unauthenticated") {
+    if (status === "unauthenticated" || session?.data?.user?.role !== 'ADMIN') {
         router.push("/");
     }
 

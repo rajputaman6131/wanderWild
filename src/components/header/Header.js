@@ -88,7 +88,8 @@ function classNames(...classes) {
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const { status } = useSession();
+  const session = useSession();
+  const { status } = session;
 
   return (
     <header className={styles.container}>
@@ -144,7 +145,8 @@ export default function Header() {
               Contact Us
             </Link>
 
-            {status === "authenticated" ? (
+            {status === "authenticated" &&
+            session?.data?.user?.role === "ADMIN" ? (
               <Popover className="relative">
                 <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
                   Admin
@@ -257,7 +259,8 @@ export default function Header() {
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
-                  {status === "authenticated" ? (
+                  {status === "authenticated" &&
+                  session?.data?.user?.role === "ADMIN" ? (
                     <Disclosure as="div" className="-mx-3">
                       {({ open }) => (
                         <>

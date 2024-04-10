@@ -14,7 +14,8 @@ import { categories, formats, modules } from "@/constants/constants";
 import toast from "react-hot-toast";
 
 const WritePage = () => {
-  const { status } = useSession();
+  const session = useSession();
+  const { status } = session;
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [values, setValues] = useState({
@@ -28,7 +29,7 @@ const WritePage = () => {
     return <Loading />
   }
 
-  if (status === "unauthenticated") {
+  if (status === "unauthenticated" || session?.data?.user?.role !== 'ADMIN') {
     router.push("/");
   }
 

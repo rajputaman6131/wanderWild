@@ -22,13 +22,12 @@ const page = () => {
     const [file, setFile] = useState("");
     const [open, setOpen] = useState(false);
 
-
     if (status === "loading") {
         return <Loading />
     }
 
 
-    if (status === "unauthenticated") {
+    if (status === "unauthenticated" || session?.data?.user?.role !== 'ADMIN') {
         router.push("/");
     }
 

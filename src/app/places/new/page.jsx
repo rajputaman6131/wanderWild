@@ -29,7 +29,7 @@ const page = () => {
     }
 
 
-    if (status === "unauthenticated") {
+    if (status === "unauthenticated" || session?.data?.user?.role !== 'ADMIN') {
         router.push("/");
     }
 

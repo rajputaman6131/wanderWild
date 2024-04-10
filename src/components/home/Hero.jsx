@@ -3,7 +3,7 @@ import Link from "next/link";
 const Hero = () => {
     return (
         <div className="wrapper">
-            <div className="relative container bg-white pb-[110px] pt-[40px] dark:bg-dark lg:pt-[70px]">
+            <div className="relative container bg-white pb-[75px] pt-[45px] dark:bg-dark lg:pt-[70px]">
                 <div className="container">
                     <div className="-mx-4 flex flex-wrap">
                         <div className="w-full px-4 lg:w-5/12">
@@ -68,16 +68,16 @@ const Hero = () => {
                         <div className="hidden px-4 lg:block lg:w-1/12"></div>
                         <div className="w-full px-4 lg:w-6/12">
                             <div className="lg:ml-auto lg:text-right">
-                                <div className="relative inline-block pt-11 lg:pt-0">
+                                <div className="relative  pt-11 lg:pt-0">
                                     <img
                                         style={{
                                             borderRadius: '80px 10px 10px 5px',
                                         }}
                                         src="/p1.jpeg"
                                         alt="hero"
-                                        className="max-w-full lg:ml-auto"
+                                        className="w-full   object-cover"
                                     />
-                                    <span className="absolute -bottom-8 -left-8 z-[0]">
+                                    {/* <span className="absolute -bottom-8 -left-8 z-[0]">
                                         <svg
                                             width="93"
                                             height="93"
@@ -111,7 +111,7 @@ const Hero = () => {
                                             <circle cx="90.5" cy="68.5" r="2.5" fill="#3056D3" />
                                             <circle cx="90.5" cy="90.5" r="2.5" fill="#3056D3" />
                                         </svg>
-                                    </span>
+                                    </span> */}
                                 </div>
                             </div>
                         </div>

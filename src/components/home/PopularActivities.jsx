@@ -20,7 +20,7 @@ const PopularActivities = async () => {
 
 
     return (
-        <div className="py-10 mb-20">
+        <div className=" mb-20">
             <div className="wrapper">
                 <Header title={"Popular Activities"} description={"Explore thrilling adventures with our top-rated activities"} />
                 <div style={{

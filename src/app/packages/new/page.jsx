@@ -14,7 +14,8 @@ import toast from 'react-hot-toast'
 
 
 const NewPackage = () => {
-    const { status } = useSession();
+    const session = useSession();
+    const { status } = session;
     const router = useRouter();
     const [open, setOpen] = useState(true);
     const [values, setValues] = useState({});
@@ -26,7 +27,7 @@ const NewPackage = () => {
         return <Loading />
     }
 
-    if (status === "unauthenticated") {
+    if (status === "unauthenticated" || session?.data?.user?.role !== 'ADMIN') {
         router.push("/");
     }
 
