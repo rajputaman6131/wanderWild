@@ -24,7 +24,7 @@ const UpdatePackage = async ({ params }) => {
     const [images, setImages] = useState({});
     const [open, setOpen] = useState(true);
 
-    // if (status === "loading" || loading) {
+    // if (loading) {
     //     return <Loading />
     // }
 
@@ -36,9 +36,7 @@ const UpdatePackage = async ({ params }) => {
         const getData = async (slug) => {
             setLoading(true);
             try {
-                const res = await fetch(`${BASE_URL}/api/packages/${slug}`, {
-                    cache: "no-store",
-                });
+                const res = await fetch(`${BASE_URL}/api/packages/${slug}`);
 
                 const data = await res.json();
                 setValues(data);
@@ -48,10 +46,10 @@ const UpdatePackage = async ({ params }) => {
                 setLoading(false);
             }
         };
-        if (slug) {
-            getData(slug);
-        }
-    }, [slug])
+
+        getData(slug);
+
+    }, [])
 
     const handleSubmit = async () => {
         try {
@@ -100,11 +98,7 @@ const UpdatePackage = async ({ params }) => {
             <ImageSection mode="admin" images={images} setImages={setImages} values={values} />
             <DetailSection setValues={setValues} values={values} mode={"admin"} description={values?.description || ''} excludedItems={values?.excludedItems || []} includedItems={values?.includedItems || []} packageType={values?.packageType} duration={values?.duration} numberOfTourists={values?.numberOfTourists} price={values?.price} />
 
-
-            {
-                values?.itinerary?.length ? <Accordion setValues={setValues} values={values} mode={'admin'} name="itinerary" items={values?.itinerary || []} title={'Itinerary'} description={"Roadmap & Timelines Of The Journey"} />
-                    : <></>
-            }
+            <Accordion setValues={setValues} values={values} mode={'admin'} name="itinerary" items={values?.itinerary || []} title={'Itinerary'} description={"Roadmap & Timelines Of The Journey"} />
 
             {
                 values?.locationEmbedSrc ? <iframe src={values?.locationEmbedSrc} width="100%" height="450" style={{
@@ -115,10 +109,9 @@ const UpdatePackage = async ({ params }) => {
             }
 
 
-            {
-                values?.faqs?.length ?
-                    <Accordion mode="admin" name="faqs" items={values?.faqs || []} title={'FAQs'} description={"Any Questions? Look Here"} setValues={setValues} values={values} /> : <></>
-            }
+
+            <Accordion mode="admin" name="faqs" items={values?.faqs || []} title={'FAQs'} description={"Any Questions? Look Here"} setValues={setValues} values={values} />
+
 
         </div>
     )

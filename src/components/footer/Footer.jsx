@@ -14,8 +14,7 @@ const Footer = () => {
 
                 </Link>
                 <p className="mb-7 text-base text-body-color dark:text-dark-6">
-                  Sed ut perspiciatis undmnis is iste natus error sit amet
-                  voluptatem totam rem aperiam.
+                  Unveiling Earth's hidden wonders, fostering a global community of explorers since 2020.
                 </p>
                 <p className="flex items-center text-sm font-medium text-dark ">
                   <span className="mr-3 text-primary">

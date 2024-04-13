@@ -1,3 +1,4 @@
+"use client"
 import {
     CalendarIcon,
     MapPinIcon,
@@ -5,7 +6,7 @@ import {
 import EditButton from '../common/EditButton'
 import PublishButton from '../common/PublishButton'
 
-export default function Header({ setOpenSlideOver, mode, packageName, locationName, lastDateOfRegistration, handlePublish }) {
+export default function Header({ setOpenSlideOver, mode, packageName, locationName, lastDateOfRegistration, handlePublish, loading }) {
 
     return (
         <div className="lg:flex lg:items-center lg:justify-between mt-10 ">
@@ -41,6 +42,7 @@ export default function Header({ setOpenSlideOver, mode, packageName, locationNa
 
                     <span className="ml-3">
                         <PublishButton
+                            disabled={loading}
                             onClick={handlePublish}
                         />
                     </span>

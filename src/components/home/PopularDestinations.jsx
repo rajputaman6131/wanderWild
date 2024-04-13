@@ -23,9 +23,7 @@ const PopularDestinations = async () => {
         <div className="py-20 bg-[#f8fbff] mb-20">
             <div className="wrapper">
                 <Header title={"Popular Destinations"} description={"Explore trending destinations and iconic landmarks with our top-rated travel packages"} />
-                <div style={{
-                    marginTop: '-20px'
-                }} className="flex items-center justify-center grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10">
+                <div className="flex items-center justify-center grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10">
                     {
                         places?.map((p, i) => <DestinationCard
                             details={p}

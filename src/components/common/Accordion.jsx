@@ -28,7 +28,7 @@ const Accordion = ({ items, title, description, mode, setValues, values, name })
   }
 
   return (
-    <section className="bg-white pb-12 pt-20 dark:bg-dark lg:pb-[90px] lg:pt-[120px]">
+    <section className=" pb-12 pt-10 lg:pb-[90px] lg:pt-[120px]">
       <div className="container mx-auto">
         <Header title={title} description={description} bottomComponent={
           mode === "admin" ? <span onClick={() => setOpen(true)} className="flex gap-x-2 cursor-pointer mt-5 justify-center">
@@ -114,7 +114,7 @@ const AccordionItem = ({ header, text, endComponent }) => {
   };
 
   return (
-    <div className="mb-8 w-full rounded-lg bg-white p-4 shadow-[0px_20px_95px_0px_rgba(201,203,204,0.30)] dark:bg-dark-2 dark:shadow-[0px_20px_95px_0px_rgba(0,0,0,0.30)] sm:p-8 lg:px-6 xl:px-8">
+    <div className="mb-8 w-full rounded-lg bg-white p-4 shadow-lg  sm:p-8 lg:px-6 xl:px-8">
       <button
         className={`faq-btn flex w-full text-left`}
         onClick={() => handleToggle()}

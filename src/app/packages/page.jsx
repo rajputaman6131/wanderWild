@@ -34,7 +34,7 @@ const Packages = async ({ searchParams }) => {
 
     return (
         <div className="wrapper">
-            <div className='py-10'>
+            <div className='pt-10'>
                 <Header title={"Our Popular Packages"} description={"Explore our curated selection of top travel packages for unforgettable adventures worldwide"} />
                 <div className="flex items-center justify-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
 

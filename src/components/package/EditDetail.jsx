@@ -1,3 +1,5 @@
+"use client"
+
 const EditDetail = ({ values, setValues, setOpen }) => {
 
     const handleChange = (e) => {

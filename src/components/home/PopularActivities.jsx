@@ -23,9 +23,7 @@ const PopularActivities = async () => {
         <div className=" mb-20">
             <div className="wrapper">
                 <Header title={"Popular Activities"} description={"Explore thrilling adventures with our top-rated activities"} />
-                <div style={{
-                    marginTop: '-20px'
-                }} className="flex items-center justify-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+                <div className="flex items-center justify-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
                     {
                         categories?.map((c, i) => <SquareCard
                             href={"#"}

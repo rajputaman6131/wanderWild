@@ -14,8 +14,8 @@ const ImageSection = ({ mode, values, images, setImages }) => {
 
     return (
         <div>
-            <div className="mx-auto mt-10 max-w-2xl lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-5">
-                <div className="lg:col-span-2">
+            <div className="mx-auto mt-5 max-w-2xl lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-5">
+                <div className="lg:col-span-2 rounded-lg overflow-hidden">
                     <label htmlFor='image1' className={`h-[500px] overflow-hidden rounded-lg lg:block ${mode === 'admin' && 'cursor-pointer'}`}>
                         <img src={images?.image1
                             ? URL.createObjectURL(images?.image1)

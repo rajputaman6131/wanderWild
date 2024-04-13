@@ -6,7 +6,7 @@ import {
 
 const PackageCard = ({ details }) => {
     return (
-        <div className="bg-white rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105 transition-all duration-300">
+        <div className="bg-white rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105 transition-all duration-500">
             <img src={details?.images[0] || "/p1.jpeg"} alt="Tour Image" className="w-full h-64 object-cover" />
             <div className="p-5">
                 <div className="">
@@ -32,7 +32,7 @@ const PackageCard = ({ details }) => {
                 <div className="pt-5">
                     <Link
                         href={`/packages/${details?.slug}`}
-                        className=" block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        className=" block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none"
                     >
                         View Details
                     </Link>
