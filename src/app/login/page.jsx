@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Loading from "../loading";
 import toast from "react-hot-toast";
+import Link from "next/link";
 
 const LoginPage = () => {
   const { status } = useSession();
@@ -34,13 +35,14 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="wrapper">
+    <div className={styles.wrapper}>
       <div className={styles.container}>
-        <div className={styles.wrapper}>
-          <div className={styles.socialButton} onClick={handleLogin}>
-            Sign in with Google
-          </div>
-        </div>
+        <button onClick={handleLogin} className={styles.btn}>
+          Sign in with Google
+        </button>
+        <p className={styles.footer}>
+          By signing in, you agree to our <Link href="/terms-conditions" className={styles.link}>terms of service</Link> and <Link href="/privacy-policy" className={styles.link}>privacy policy</Link>.
+        </p>
       </div>
     </div>
   );

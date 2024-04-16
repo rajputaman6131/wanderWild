@@ -59,6 +59,9 @@ const Footer = () => {
               <NavLink link="/#about" label="About Us" />
               <NavLink link="/contact" label="Contact & Support" />
               <NavLink link="/#faq" label="FAQs" />
+              <NavLink link="/terms-conditions" label="Terms & Conditions" />
+              <NavLink link="/privacy-policy" label="Privacy Policy" />
+              <NavLink link="/return-policy" label="Return Policy" />
             </LinkGroup>
             <LinkGroup header="Quick Links">
               <NavLink link="/blogs" label="Blogs" />

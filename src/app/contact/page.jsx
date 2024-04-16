@@ -51,9 +51,7 @@ const Contact = () => {
                                     GET IN TOUCH WITH US
                                 </h2>
                                 <p className="mb-9 text-base leading-relaxed text-body-color dark:text-dark-6">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                                    do eius tempor incididunt ut labore e dolore magna aliqua. Ut
-                                    enim adiqua minim veniam quis nostrud exercitation ullamco
+                                    Our team is here to provide guidance, answer your questions, and assist you on your journey. Let's make your travel dreams a reality!
                                 </p>
                                 <div className="mb-8 flex w-full max-w-[370px]">
                                     <div style={{
