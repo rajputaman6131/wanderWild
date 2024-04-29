@@ -37,7 +37,7 @@ const PopularTours = async () => {
             <div className="pt-10 flex justify-center">
                 <Link
                     href="/packages"
-                    className=" block  rounded-2xl bg-indigo-600 px-6 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    className=" block  rounded-2xl bg-[#3c8d7d] px-6 py-2 text-center text-sm font-semibold text-white shadow-sm"
                 >
                     View All {"  "} <span aria-hidden="true">&rarr;</span>
                 </Link>

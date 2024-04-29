@@ -12,8 +12,6 @@ import { BASE_URL, categories, formats, modules } from "@/constants/constants";
 import ImageSection from "@/components/package/ImageSection";
 import toast from "react-hot-toast";
 
-
-
 const UpdatePage = ({ params }) => {
     const session = useSession();
     const { status } = session;

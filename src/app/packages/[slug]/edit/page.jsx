@@ -2,6 +2,7 @@
 import Loading from '@/app/loading'
 import PageNotFound from '@/components/PageNotFound/PageNotFound'
 import Accordion from '@/components/common/Accordion'
+import Calendar from '@/components/common/Calendar'
 import SlideOver from '@/components/common/SlideOver'
 import DetailSection from '@/components/package/DetailSection'
 import EditDetail from '@/components/package/EditDetail'
@@ -14,19 +15,16 @@ import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
-const UpdatePackage = async ({ params }) => {
+const UpdatePackage = ({ params }) => {
     const session = useSession();
     const { status } = session;
     const router = useRouter();
     const { slug } = params;
     const [values, setValues] = useState({});
-    const [loading, setLoading] = useState(false);
     const [images, setImages] = useState({});
     const [open, setOpen] = useState(true);
-
-    // if (loading) {
-    //     return <Loading />
-    // }
+    const [loading, setLoading] = useState(false);
+    const [numberOfSeats, setNumberOfSeats] = useState({});
 
     if (status === "unauthenticated" || session?.data?.user?.role !== 'ADMIN') {
         router.push("/");
@@ -34,26 +32,35 @@ const UpdatePackage = async ({ params }) => {
 
     useEffect(() => {
         const getData = async (slug) => {
-            setLoading(true);
             try {
-                const res = await fetch(`${BASE_URL}/api/packages/${slug}`);
+                setLoading(true)
+                const res = await fetch(`${BASE_URL}/api/packages/${slug}`, {
+                    cache: "no-store",
+                });
 
-                const data = await res.json();
-                setValues(data);
+                return res.json();
+
             } catch (error) {
                 console.log(error)
             } finally {
-                setLoading(false);
+                setLoading(false)
             }
+
         };
 
-        getData(slug);
+        getData(slug).then((data) => {
+            setValues(data);
+            const avlObj = {};
+            data?.availability?.forEach((d) => {
+                avlObj[new Date(d.date).toUTCString()] = d.availableSeats
+            })
+            setNumberOfSeats(avlObj)
+        })
 
-    }, [])
+    }, [slug])
 
     const handleSubmit = async () => {
         try {
-            setLoading(true);
 
             let imageUrls = Object.keys(images).length ? await uploadImages(images) : [];
 
@@ -70,6 +77,10 @@ const UpdatePackage = async ({ params }) => {
                         image2 && image1 ? imageUrls[1] : image2 ? imageUrls[0] : values?.images[1],
                         image2 && image1 && image3 ? imageUrls[2] : image3 && (image1 || image2) ? imageUrls[1] : image3 ? imageUrls[0] : values?.images[2]
                     ],
+                    availability: Object.keys(numberOfSeats).map(((d) => ({
+                        date: new Date(d),
+                        availableSeats: numberOfSeats[d] || 0
+                    })))
                 }),
             });
             toast.success("Updated Successfully!");
@@ -79,11 +90,10 @@ const UpdatePackage = async ({ params }) => {
             toast.error("Something went wrong");
 
             console.log(error)
-        } finally {
-            setLoading(false);
         }
     };
 
+    if (loading) return <Loading />
 
     if (!Object.keys(values).length) {
         return <PageNotFound />
@@ -91,14 +101,18 @@ const UpdatePackage = async ({ params }) => {
 
     return (
         <div className='wrapper'>
-            <Header handlePublish={handleSubmit} setOpenSlideOver={setOpen} mode={"admin"} locationName={values?.locationName} lastDateOfRegistration={values?.lastDate} packageName={values?.packageName} />
+            <Header handlePublish={handleSubmit} setOpenSlideOver={setOpen} mode={"admin"} locationName={values?.locationName} duration={values?.duration} packageName={values?.packageName} />
             <SlideOver open={open} setOpen={setOpen} title={"Update Details"} body={<EditDetail
                 values={values} setValues={setValues} setOpen={setOpen}
             />} />
             <ImageSection mode="admin" images={images} setImages={setImages} values={values} />
             <DetailSection setValues={setValues} values={values} mode={"admin"} description={values?.description || ''} excludedItems={values?.excludedItems || []} includedItems={values?.includedItems || []} packageType={values?.packageType} duration={values?.duration} numberOfTourists={values?.numberOfTourists} price={values?.price} />
 
+            <Calendar numberOfSeats={numberOfSeats} setNumberOfSeats={setNumberOfSeats} />
+
             <Accordion setValues={setValues} values={values} mode={'admin'} name="itinerary" items={values?.itinerary || []} title={'Itinerary'} description={"Roadmap & Timelines Of The Journey"} />
+
+            <Accordion mode="admin" name="faqs" items={values?.faqs || []} title={'FAQs'} description={"Any Questions? Look Here"} setValues={setValues} values={values} />
 
             {
                 values?.locationEmbedSrc ? <iframe src={values?.locationEmbedSrc} width="100%" height="450" style={{
@@ -107,11 +121,6 @@ const UpdatePackage = async ({ params }) => {
                     marginTop: "40px"
                 }} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> : <></>
             }
-
-
-
-            <Accordion mode="admin" name="faqs" items={values?.faqs || []} title={'FAQs'} description={"Any Questions? Look Here"} setValues={setValues} values={values} />
-
 
         </div>
     )

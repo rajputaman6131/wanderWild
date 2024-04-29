@@ -3,6 +3,8 @@ import Table from '@/components/common/Table';
 import Header from '@/components/common/TableHeader';
 import { BASE_URL } from '@/constants/constants';
 import { TrashIcon } from '@heroicons/react/24/outline';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
@@ -15,6 +17,14 @@ const page = () => {
     const limit = 4;
     const [totalPages, setTotalPages] = useState(Math.ceil(count / limit));
     const [data, setData] = useState([])
+
+    const session = useSession();
+    const router = useRouter();
+    const { status } = session;
+
+    if (status === "unauthenticated" || session?.data?.user?.role !== 'ADMIN') {
+        router.push("/");
+    }
 
     const [searchTerm, setSearchTerm] = useState('');
 

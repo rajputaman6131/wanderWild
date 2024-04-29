@@ -28,7 +28,7 @@ const Accordion = ({ items, title, description, mode, setValues, values, name })
   }
 
   return (
-    <section className=" pb-12 pt-10 lg:pb-[90px] lg:pt-[120px]">
+    <section className=" pb-10 pt-10">
       <div className="container mx-auto">
         <Header title={title} description={description} bottomComponent={
           mode === "admin" ? <span onClick={() => setOpen(true)} className="flex gap-x-2 cursor-pointer mt-5 justify-center">

@@ -3,6 +3,8 @@ import Table from '@/components/common/Table';
 import Header from '@/components/common/TableHeader';
 import { BASE_URL } from '@/constants/constants';
 import { TrashIcon } from '@heroicons/react/24/outline';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
@@ -16,6 +18,14 @@ const page = () => {
     const [totalPages, setTotalPages] = useState(Math.ceil(count / limit));
     const [data, setData] = useState([])
 
+    const session = useSession();
+    const { status } = session;
+    const router = useRouter();
+
+    if (status === "unauthenticated" || session?.data?.user?.role !== 'ADMIN') {
+        router.push("/");
+    }
+
     const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
@@ -23,7 +33,7 @@ const page = () => {
             try {
 
                 const res = await fetch(
-                    `${BASE_URL}/api/places?page=${currentPage}|| ""}`,
+                    `${BASE_URL}/api/places?page=${currentPage}&keyword=${searchTerm || ""}`,
                     {
                         cache: "no-store",
                     }
@@ -40,12 +50,6 @@ const page = () => {
             setCount(data.count);
             setData(data.places.map((d) => [
                 <span className='flex space-x-5'>
-                    {/* <Link href={`/activities/${d.slug}`} className={`${actionClasses}`}>
-                        <EyeIcon />
-                    </Link>
-                    <Link href={`/activities/${d.slug}/edit`} className={actionClasses}>
-                        <PencilSquareIcon />
-                    </Link> */}
                     <button className={`${actionClasses}`}>
                         <TrashIcon />
                     </button>

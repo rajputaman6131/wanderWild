@@ -1,5 +1,4 @@
-const { models } = require("mongoose");
-const { Schema, model } = require("mongoose");
+const { Schema, model, models } = require("mongoose");
 
 const PackageSchema = new Schema(
   {
@@ -9,10 +8,7 @@ const PackageSchema = new Schema(
     locationEmbedSrc: { type: String },
     images: [{ type: String }],
     duration: { type: String },
-    packageType: { type: String },
-    numberOfTourists: { type: String },
-    lastDate: Date,
-    maxGuest: { type: Number },
+    packageType: { type: String, enum: ["travel", "activity"], required: true },
     description: { type: String, required: true },
     price: { type: Number, required: true },
     includedItems: [{ type: String }],
@@ -42,13 +38,22 @@ const PackageSchema = new Schema(
     category: { type: Schema.Types.ObjectId, ref: "Category" },
     user: { type: Schema.Types.ObjectId, ref: "User" },
     comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
+    availability: [
+      {
+        date: { type: Date, required: true },
+        availableSeats: { type: Number, required: true },
+      },
+    ],
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
   {
     timestamps: true,
   }
 );
 
-// Index for geospatial queries
 PackageSchema.index({ coordinates: "2dsphere" });
 
 const Package = models.Package || model("Package", PackageSchema);

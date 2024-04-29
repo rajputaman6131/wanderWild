@@ -39,7 +39,7 @@ const AboutUs = () => {
 
                         <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
                             <div className="mt-10 lg:mt-0">
-                                <span className="block mb-4 text-lg font-semibold text-primary">
+                                <span className="block mb-4 text-lg font-semibold text-[#3c8d7d]">
                                     Why Choose Us
                                 </span>
                                 <h2 className="mb-5 text-3xl font-bold text-dark  sm:text-[40px]/[48px]">
@@ -54,7 +54,7 @@ const AboutUs = () => {
 
                                 <Link
                                     href="/packages"
-                                    className="inline-flex items-center justify-center py-3 text-base font-medium text-center text-white border border-transparent rounded-md px-7 bg-primary hover:bg-opacity-90"
+                                    className="inline-flex items-center justify-center py-3 text-base font-medium text-center text-white border border-transparent rounded-md px-7 bg-[#3c8d7d] hover:bg-opacity-90"
                                 >
                                     Explore Packages
                                 </Link>

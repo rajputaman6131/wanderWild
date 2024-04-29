@@ -18,7 +18,7 @@ const Hero = () => {
                                     <li>
                                         <Link
                                             href="/packages"
-                                            className="inline-flex items-center bg-primary justify-center rounded-md  px-6 py-3 text-center text-base font-medium text-white hover:bg-blue-dark lg:px-7"
+                                            className="inline-flex items-center bg-[#3c8d7d] justify-center rounded-md  px-6 py-3 text-center text-base font-medium text-white lg:px-7 hover:bg-opacity-90"
                                         >
                                             Explore Packages
                                         </Link>
@@ -27,7 +27,7 @@ const Hero = () => {
                                         <Link
 
                                             href="/#"
-                                            className="inline-flex items-center justify-center px-5 py-3 text-center text-base font-medium text-[#464646] hover:text-primary "
+                                            className="inline-flex items-center justify-center px-5 py-3 text-center text-base font-medium hover:text-[#3c8d7d] "
                                         >
                                             <span className="mr-2">
                                                 <svg
@@ -37,7 +37,7 @@ const Hero = () => {
                                                     fill="none"
                                                     xmlns="http://www.w3.org/2000/svg"
                                                 >
-                                                    <circle cx="12" cy="12.6152" r="12" fill="#3758F9" />
+                                                    <circle cx="12" cy="12.6152" r="12" fill="#3c8d7d" />
                                                     <rect
                                                         x="7.99893"
                                                         y="14.979"

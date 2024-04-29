@@ -32,14 +32,19 @@ const PackageDetail = async ({ params }) => {
 
     return (
         <div className='wrapper'>
-            <Header mode={"client"} locationName={values?.locationName} lastDateOfRegistration={values?.lastDate} packageName={values?.packageName} />
+            <Header mode={"client"} locationName={values?.locationName} duration={values?.duration} packageName={values?.packageName} />
             <ImageSection mode="client" values={values} />
-            <DetailSection mode={"client"} description={values?.description || ''} excludedItems={values?.excludedItems || []} includedItems={values?.includedItems || []} packageType={values?.packageType} duration={values?.duration} numberOfTourists={values?.numberOfTourists} price={values?.price} />
+            <DetailSection slug={slug} mode={"client"} description={values?.description || ''} excludedItems={values?.excludedItems || []} includedItems={values?.includedItems || []} packageType={values?.packageType} duration={values?.duration} numberOfTourists={values?.numberOfTourists} price={values?.price} />
 
 
             {
                 values?.itinerary?.length ? <Accordion mode={'client'} name="itinerary" items={values?.itinerary || []} title={'Itinerary'} description={"Roadmap & Timelines Of The Journey"} />
                     : <></>
+            }
+
+            {
+                values?.faqs?.length ?
+                    <Accordion mode="client" name="faqs" items={values?.faqs || []} title={'FAQs'} description={"Any Questions? Look Here"} /> : <></>
             }
 
             {
@@ -51,10 +56,6 @@ const PackageDetail = async ({ params }) => {
             }
 
 
-            {
-                values?.faqs?.length ?
-                    <Accordion mode="client" name="faqs" items={values?.faqs || []} title={'FAQs'} description={"Any Questions? Look Here"} /> : <></>
-            }
 
         </div>
     )

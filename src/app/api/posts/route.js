@@ -8,6 +8,7 @@ export const GET = async (req) => {
 
   const page = parseInt(searchParams.get("page")) || 1; // Convert page parameter to number
   const cat = searchParams.get("cat");
+  const keyword = searchParams.get("keyword");
 
   const POSTS_PER_PAGE = parseInt(searchParams.get("limit")) || 6;
 
@@ -15,6 +16,7 @@ export const GET = async (req) => {
 
   const query = {
     ...(cat && { catSlug: cat }),
+    ...(keyword && { title: { $regex: keyword, $options: "i" } }),
   };
 
   try {

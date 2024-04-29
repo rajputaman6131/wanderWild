@@ -8,12 +8,15 @@ export const GET = async (req) => {
 
   const page = parseInt(searchParams.get("page")) || 1;
   const limit = parseInt(searchParams.get("limit")) || 5;
+  const keyword = searchParams.get("keyword");
 
   const POSTS_PER_PAGE = limit;
 
   const skip = POSTS_PER_PAGE * (page - 1); // Calculate skip value
 
-  const query = {};
+  const query = {
+    ...(keyword && { name: { $regex: keyword, $options: "i" } }),
+  };
 
   try {
     await connectToDB();

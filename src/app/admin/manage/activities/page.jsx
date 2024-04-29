@@ -3,12 +3,17 @@ import Table from '@/components/common/Table';
 import Header from '@/components/common/TableHeader';
 import { BASE_URL } from '@/constants/constants';
 import { TrashIcon } from '@heroicons/react/24/outline';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
 const actionClasses = " relative text-secondary-dark bg-light-dark hover:text-primary flex items-center h-[20px] w-[20px] text-base font-medium leading-normal text-center align-middle cursor-pointer rounded-2xl transition-colors duration-200 ease-in-out shadow-none border-0 justify-center"
 
 const page = () => {
+    const session = useSession();
+    const router = useRouter();
+    const { status } = session;
     const columns = ["Action", '_id', 'Image', 'Activity Name', 'Slug', 'Created at'];
     const [currentPage, setCurrentPage] = useState(1);
     const [count, setCount] = useState(0);
@@ -18,12 +23,17 @@ const page = () => {
 
     const [searchTerm, setSearchTerm] = useState('');
 
+
+    if (status === "unauthenticated" || session?.data?.user?.role !== 'ADMIN') {
+        router.push("/");
+    }
+
     useEffect(() => {
         const loadData = async () => {
             try {
 
                 const res = await fetch(
-                    `${BASE_URL}/api/categories?page=${currentPage}|| ""}`,
+                    `${BASE_URL}/api/categories?page=${currentPage}&keyword=${searchTerm || ""}`,
                     {
                         cache: "no-store",
                     }
@@ -40,12 +50,7 @@ const page = () => {
             setCount(data.count);
             setData(data.categories.map((d) => [
                 <span className='flex space-x-5'>
-                    {/* <Link href={`/activities/${d.slug}`} className={`${actionClasses}`}>
-                        <EyeIcon />
-                    </Link>
-                    <Link href={`/activities/${d.slug}/edit`} className={actionClasses}>
-                        <PencilSquareIcon />
-                    </Link> */}
+
                     <button className={`${actionClasses}`}>
                         <TrashIcon />
                     </button>

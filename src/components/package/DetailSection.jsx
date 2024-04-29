@@ -1,12 +1,11 @@
 "use client"
 import { CheckIcon, XMarkIcon } from '@heroicons/react/20/solid'
 import { PlusCircleIcon } from '@heroicons/react/24/outline'
-import Link from 'next/link'
 import Modal from '../common/Modal'
 import { useState } from 'react'
+import Link from 'next/link'
 
-export default function DetailSection({ includedItems = [], excludedItems = [], price = "00", packageType = "Per Person", description, mode, values, setValues }) {
-
+export default function DetailSection({ includedItems = [], excludedItems = [], price = "00", packageType = "Per Person", description, mode, values, setValues, slug }) {
     const [item, setItem] = useState("");
     const [open, setOpen] = useState("");
 
@@ -18,6 +17,7 @@ export default function DetailSection({ includedItems = [], excludedItems = [], 
         setOpen(false)
     }
 
+
     const removeItem = (itemType, index) => {
         const type = itemType === "Included Item" ? 'includedItems' : 'excludedItems'
         const prevValues = itemType === "Included Item" ? includedItems : excludedItems
@@ -26,7 +26,7 @@ export default function DetailSection({ includedItems = [], excludedItems = [], 
     }
 
     return (
-        <div className="mx-auto mt-10 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-10 lg:mx-0 lg:flex lg:max-w-none">
+        <div className="mx-auto mt-10 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-10 lg:mx-0 lg:flex lg:max-w-none mb-10">
             <div className="p-8 sm:p-10 lg:flex-auto">
                 <h3 className="text-2xl font-bold tracking-tight text-gray-900">Detail</h3>
                 <p className="mt-6 text-base leading-7 text-gray-600">
@@ -100,14 +100,14 @@ export default function DetailSection({ includedItems = [], excludedItems = [], 
             <div className="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
                 <div className="rounded-2xl bg-gray-50 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
                     <div className="mx-auto max-w-xs px-8">
-                        <p className="text-base font-semibold text-gray-600">{packageType}</p>
+                        <p className="text-base font-semibold text-gray-600">Per Person</p>
                         <p className="mt-6 flex items-baseline justify-center gap-x-2">
                             <span className="text-5xl font-bold tracking-tight text-gray-900">₹{price}</span>
 
                         </p>
                         <Link
-                            href={mode === 'admin' ? "#" : "#pay"}
-                            className="mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            href={mode === 'admin' ? '#' : `/packages/${slug}/cart`}
+                            className="mt-10 block w-full rounded-md bg-[#3c8d7d] px-3 py-2 text-center text-sm font-semibold text-white shadow-sm"
                         >
                             Book Now
                         </Link>

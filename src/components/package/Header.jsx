@@ -1,12 +1,12 @@
 "use client"
 import {
-    CalendarIcon,
+    ClockIcon,
     MapPinIcon,
 } from '@heroicons/react/20/solid'
 import EditButton from '../common/EditButton'
 import PublishButton from '../common/PublishButton'
 
-export default function Header({ setOpenSlideOver, mode, packageName, locationName, lastDateOfRegistration, handlePublish, loading }) {
+export default function Header({ setOpenSlideOver, mode, packageName, locationName, duration, handlePublish, loading }) {
 
     return (
         <div className="lg:flex lg:items-center lg:justify-between mt-10 ">
@@ -24,9 +24,9 @@ export default function Header({ setOpenSlideOver, mode, packageName, locationNa
                     }
 
                     {
-                        lastDateOfRegistration ? <div className="mt-2 flex items-center text-sm text-gray-500">
-                            <CalendarIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
-                            Closing on {new Date(lastDateOfRegistration).toDateString()}
+                        duration ? <div className="mt-2 flex items-center text-sm text-gray-500">
+                            <ClockIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
+                            {duration}
                         </div> : <></>
                     }
                 </div>

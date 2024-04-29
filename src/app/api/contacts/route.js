@@ -7,14 +7,14 @@ export const GET = async (req) => {
   const { searchParams } = new URL(req.nextUrl);
 
   const page = parseInt(searchParams.get("page")) || 1; // Convert page parameter to number
-  const name = searchParams.get("name");
+  const keyword = searchParams.get("keyword");
 
   const POSTS_PER_PAGE = 6;
 
   const skip = POSTS_PER_PAGE * (page - 1); // Calculate skip value
 
   const query = {
-    ...(name && { name }),
+    ...(keyword && { name: { $regex: keyword, $options: "i" } }),
   };
 
   try {

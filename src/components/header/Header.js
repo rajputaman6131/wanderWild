@@ -10,6 +10,7 @@ import {
   PhotoIcon,
   EnvelopeIcon,
   ListBulletIcon,
+  TicketIcon,
 } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import styles from "./header.module.css";
@@ -50,7 +51,14 @@ const products = [
     href: "/gallery/new",
     icon: PhotoIcon,
   },
+  {
+    name: "Bookings",
+    description: "Details of all the booking transactions",
+    href: "/admin/manage/bookings",
+    icon: TicketIcon,
+  },
 ];
+
 const callsToAction = [
   {
     name: "Customer Enquiries",

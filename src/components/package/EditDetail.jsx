@@ -35,22 +35,6 @@ const EditDetail = ({ values, setValues, setOpen }) => {
             </div>
 
             <div className="sm:col-span-3 mt-6">
-                <label htmlFor="lastDate" className="block text-sm font-medium leading-6 text-gray-900">
-                    Last Date Of Registration
-                </label>
-                <div className="mt-2">
-                    <input
-                        value={values?.lastDate}
-                        onChange={handleChange}
-                        type="date"
-                        name="lastDate"
-                        id="lastDate"
-                        className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                </div>
-            </div>
-
-            <div className="sm:col-span-3 mt-6">
                 <label htmlFor="locationName" className="block text-sm font-medium leading-6 text-gray-900 mt-2">
                     Location Name
                 </label>
@@ -87,41 +71,6 @@ const EditDetail = ({ values, setValues, setOpen }) => {
                         min={0}
                         name="price"
                         id="price"
-                        className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                </div>
-            </div>
-
-            <div className="sm:col-span-3 mt-6">
-                <label htmlFor="packageType" className="block text-sm font-medium leading-6 text-gray-900">
-                    Price For
-                </label>
-                <div className="mt-2">
-                    <input
-                        required
-                        value={values?.packageType}
-                        onChange={handleChange}
-                        type="text"
-                        name="packageType"
-                        id="packageType"
-                        placeholder="Ex: Per Person"
-                        className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                </div>
-            </div>
-
-            <div className="sm:col-span-3 mt-6">
-                <label htmlFor="numberOfTourists" className="block text-sm font-medium leading-6 text-gray-900">
-                    Number of Tourists
-                </label>
-                <div className="mt-2">
-                    <input
-                        required
-                        value={values?.numberOfTourists}
-                        onChange={handleChange}
-                        type="text"
-                        name="numberOfTourists"
-                        id="numberOfTourists"
                         className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                 </div>
@@ -174,7 +123,7 @@ const EditDetail = ({ values, setValues, setOpen }) => {
                                 onChange={handleChange}
                                 id="details"
                                 name="description"
-                                rows={3}
+                                rows={5}
                                 className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 defaultValue={''}
                                 placeholder="Describe details of package"

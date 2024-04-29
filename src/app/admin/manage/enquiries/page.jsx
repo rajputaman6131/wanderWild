@@ -2,6 +2,8 @@
 import Table from '@/components/common/Table';
 import Header from '@/components/common/TableHeader';
 import { BASE_URL } from '@/constants/constants';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
@@ -15,12 +17,20 @@ const page = () => {
 
     const [searchTerm, setSearchTerm] = useState('');
 
+    const router = useRouter();
+    const session = useSession();
+    const { status } = session;
+
+    if (status === "unauthenticated" || session?.data?.user?.role !== 'ADMIN') {
+        router.push("/");
+    }
+
     useEffect(() => {
         const loadData = async () => {
 
             try {
                 const res = await fetch(
-                    `${BASE_URL}/api/contacts?page=${currentPage}|| ""}`,
+                    `${BASE_URL}/api/contacts?page=${currentPage}&keyword=${searchTerm || ""}`,
                     {
                         cache: "no-store",
                     }

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import {
     CalendarIcon,
+    ClockIcon,
     MapPinIcon,
 } from '@heroicons/react/20/solid'
 
@@ -21,8 +22,8 @@ const PackageCard = ({ details }) => {
                         </div>
 
                         <div className="mt-3 flex items-center text-sm text-gray-500">
-                            <CalendarIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
-                            Closing on {new Date(details?.lastDate).toDateString()}
+                            <ClockIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
+                            {details?.duration}
                         </div>
 
                     </div>
@@ -32,7 +33,7 @@ const PackageCard = ({ details }) => {
                 <div className="pt-5">
                     <Link
                         href={`/packages/${details?.slug}`}
-                        className=" block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none"
+                        className=" block w-full rounded-md bg-[#3c8d7d] px-3 py-2 text-center text-sm font-semibold text-white"
                     >
                         View Details
                     </Link>
