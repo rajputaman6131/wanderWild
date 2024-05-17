@@ -21,73 +21,86 @@ import Image from "next/image";
 const products = [
   {
     name: "Write Blog",
-    description: "Insightful tips, and destination guides",
+    description:
+      "Share insightful tips and destination guides with your audience.",
     href: "/posts/write",
     icon: PencilSquareIcon,
   },
   {
+    name: "Manage Blogs",
+    description:
+      "Effortlessly manage and update your blog posts for fresh content.",
+    href: "/admin/manage/blogs",
+    icon: ListBulletIcon,
+  },
+  {
     name: "Add Package",
-    description: "Post packages you want to feature",
+    description: "Feature exclusive post packages to attract more visitors.",
     href: "/packages/new",
     icon: PlusCircleIcon,
   },
   {
-    name: "Add Place",
-    description: "Places you want to feature",
-    href: "/places/new",
-    icon: PlusCircleIcon,
-  },
-
-  {
-    name: "Add Activities",
-    description: "Activities you want to feature",
-    href: "/activities/new",
-    icon: PlusCircleIcon,
-  },
-
-  {
-    name: "Add Image",
-    description: "Images you want to feature in gallery",
-    href: "/gallery/new",
-    icon: PhotoIcon,
-  },
-  {
-    name: "Bookings",
-    description: "Details of all the booking transactions",
-    href: "/admin/manage/bookings",
-    icon: TicketIcon,
-  },
-];
-
-const callsToAction = [
-  {
-    name: "Customer Enquiries",
-    href: "/admin/manage/enquiries",
-    icon: EnvelopeIcon,
-  },
-  { name: "Manage Blogs", href: "/admin/manage/blogs", icon: ListBulletIcon },
-  {
     name: "Manage Packages",
+    description: "Control the visibility and details of your post packages.",
     href: "/admin/manage/packages",
     icon: ListBulletIcon,
   },
-
+  {
+    name: "Add Place",
+    description:
+      "Highlight unique places and attractions for travelers to explore.",
+    href: "/places/new",
+    icon: PlusCircleIcon,
+  },
+  {
+    name: "Manage Places",
+    description:
+      "Manage and update your list of featured destinations and attractions.",
+    href: "/admin/manage/places",
+    icon: ListBulletIcon,
+  },
+  {
+    name: "Add Activities",
+    description:
+      "Offer exciting activities and experiences for tourists to enjoy.",
+    href: "/activities/new",
+    icon: PlusCircleIcon,
+  },
   {
     name: "Manage Activities",
+    description:
+      "Organize and modify your listed activities for optimal presentation.",
     href: "/admin/manage/activities",
     icon: ListBulletIcon,
   },
   {
+    name: "Add Image",
+    description:
+      "Enhance your gallery with stunning images to captivate visitors.",
+    href: "/gallery/new",
+    icon: PhotoIcon,
+  },
+  {
     name: "Manage Gallery",
+    description: "Curate and maintain your image gallery for visual appeal.",
     href: "/admin/manage/gallery",
     icon: PhotoIcon,
   },
   {
-    name: "Manage Places",
-    href: "/admin/manage/places",
-    icon: ListBulletIcon,
+    name: "Bookings",
+    description: "Track and manage all booking transactions with ease.",
+    href: "/admin/manage/bookings",
+    icon: TicketIcon,
+  },
+  {
+    name: "Customer Enquiries",
+    description: "Respond promptly to customer inquiries and support requests.",
+    href: "/admin/manage/enquiries",
+    icon: EnvelopeIcon,
   },
 ];
+
+const callsToAction = [];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -152,7 +165,16 @@ export default function Header() {
             >
               Contact Us
             </Link>
-
+            {status === "authenticated" ? (
+              <Link
+                href={`/bookings`}
+                className="text-sm font-semibold leading-6 text-gray-900"
+              >
+                Bookings
+              </Link>
+            ) : (
+              <></>
+            )}
             {status === "authenticated" &&
             session?.data?.user?.role === "ADMIN" ? (
               <Popover className="relative">
@@ -173,7 +195,8 @@ export default function Header() {
                   leaveFrom="opacity-100 translate-y-0"
                   leaveTo="opacity-0 translate-y-1"
                 >
-                  <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md  rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
+                  <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 overflow-y-auto max-h-[calc(100vh-16rem)]">
+                    {/* Apply "overflow-y-auto" and "max-h" styles to enable scrolling */}
                     <div className="p-4">
                       {products.map((item) => (
                         <div
@@ -331,6 +354,16 @@ export default function Header() {
                   >
                     Contact Us
                   </Link>
+                  {status === "authenticated" ? (
+                    <Link
+                      href={"/bookings"}
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    >
+                      Bookings
+                    </Link>
+                  ) : (
+                    <></>
+                  )}
                 </div>
                 <div className="py-6">
                   {status === "authenticated" ? (

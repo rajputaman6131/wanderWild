@@ -46,7 +46,7 @@ const page = () => {
         }
         loadData().then((data) => {
             setCount(data.count);
-            setData(data.bookings.map((d) => [
+            setData(data?.bookings?.map((d) => [
 
                 d._id, d.email, <span className='capitalize'>{d.status}</span>, <span className='capitalize'>{d.paymentStatus}</span>, new Date(d.packageDate).toDateString(), d.seatsBooked, d.amount, new Date(d.createdAt).toDateString(), d.transactionId]));
             setTotalPages(Math.ceil(data.count / limit))

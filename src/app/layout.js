@@ -19,6 +19,28 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+          name="description"
+          content="Discover the best adventure travel experiences with Wander Wild Adventures. Book your next adventure with us!"
+        />
+        <meta
+          name="keywords"
+          content="adventure travel, tourism, travel app, bookings, adventure tours"
+        />
+        <meta name="author" content="Wander Wild Adventures" />
+
+        <meta property="og:title" content="Wander Wild Adventures" />
+        <meta
+          property="og:description"
+          content="The best tourism app for adventure travels!"
+        />
+        <meta property="og:image" content="/logo.png" />
+        <meta property="og:url" content="https://wanderwildadventures.in" />
+        <meta property="og:type" content="website" />
+        <title>Wander Wild Adventures</title>
+      </head>
       <body className={inter.className}>
         <AuthProvider>
           <ThemeContextProvider>

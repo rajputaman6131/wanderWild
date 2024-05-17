@@ -1,9 +1,14 @@
 import { Schema, model, models } from "mongoose";
+import Package from "./package";
 
 const BookingSchema = new Schema(
   {
     packageType: { type: String, enum: ["travel", "activity"], required: true },
-    packageId: { type: Schema.Types.ObjectId, required: true },
+    packageId: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: Package,
+    },
     email: { type: String, required: true },
     packageDate: { type: Date, required: true },
     seatsBooked: { type: Number, required: true },
