@@ -1,7 +1,7 @@
 
 const Loading = () => {
     return (
-        <div div style={{
+        <div style={{
             height: '50vh',
             display: 'flex',
             alignItems: 'center',
