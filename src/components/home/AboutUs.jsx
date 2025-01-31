@@ -11,14 +11,14 @@ const AboutUs = () => {
                                 <div className="w-full px-3 sm:px-4 xl:w-1/2">
                                     <div className="py-3 sm:py-4">
                                         <img
-                                            src="https://i.ibb.co/gFb3ns6/image-1.jpg"
+                                            src="/t1.jpeg"
                                             alt=""
                                             className="w-full rounded-2xl"
                                         />
                                     </div>
                                     <div className="py-3 sm:py-4">
                                         <img
-                                            src="https://i.ibb.co/rfHFq15/image-2.jpg"
+                                            src="/t2.jpeg"
                                             alt=""
                                             className="w-full rounded-2xl"
                                         />
@@ -27,7 +27,7 @@ const AboutUs = () => {
                                 <div className="w-full px-3 sm:px-4 xl:w-1/2">
                                     <div className="relative  my-4">
                                         <img
-                                            src="https://i.ibb.co/9y7nYCD/image-3.jpg"
+                                            src="/t5.jpeg"
                                             alt=""
                                             className="w-full rounded-2xl"
                                         />

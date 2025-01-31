@@ -66,16 +66,17 @@ const Hero = () => {
                             </div>
                         </div>
                         <div className="hidden px-4 lg:block lg:w-1/12"></div>
-                        <div className="w-full px-4 lg:w-6/12">
+                        <div className="w-full px-4 lg:w-6/12 h-[80vh]">
                             <div className="lg:ml-auto lg:text-right">
                                 <div className="relative  pt-11 lg:pt-0">
                                     <img
                                         style={{
                                             borderRadius: '80px 10px 10px 5px',
+
                                         }}
-                                        src="/p1.jpeg"
+                                        src="/p3.jpeg"
                                         alt="hero"
-                                        className="w-full   object-cover"
+                                        className="w-full  h-[70vh] object-cover"
                                     />
                                     {/* <span className="absolute -bottom-8 -left-8 z-[0]">
                                         <svg
