@@ -5,6 +5,7 @@ import FAQ from "@/components/home/FAQ";
 import PopularDestinations from "@/components/home/PopularDestinations";
 import PopularTours from "@/components/home/PopularTours";
 import PopularActivities from "@/components/home/PopularActivities";
+import BikeBookings from "@/components/home/BikeBookings";
 
 
 export default function Home({ searchParams }) {
@@ -18,6 +19,7 @@ export default function Home({ searchParams }) {
         <PopularActivities />
         <PopularDestinations />
         <PopularTours />
+        <BikeBookings />
         <AboutUs />
         <FAQ />
       </div>

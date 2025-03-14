@@ -26,7 +26,7 @@ const Packages = async ({ searchParams }) => {
 
     const { packages, count } = await getData(page);
 
-    const POST_PER_PAGE = 6;
+    const POST_PER_PAGE = 10;
 
     const hasPrev = POST_PER_PAGE * (page - 1) > 0;
     const hasNext = POST_PER_PAGE * (page - 1) + POST_PER_PAGE < count;
