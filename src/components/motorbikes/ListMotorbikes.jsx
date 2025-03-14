@@ -4,7 +4,7 @@ export default function ListMotorBikes({ motorcycles }) {
             {motorcycles.map((bike, index) => (
                 <div
                     key={index}
-                    className="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col transition-transform transform hover:scale-105 hover:shadow-2xl duration-300"
+                    className="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col transition-transform transform hover:scale-105 hover:shadow-2xl duration-300 rounded-xl"
                 >
                     {/* Card Header */}
                     <div className="p-4 flex justify-between items-center">
